@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Kick Bazaar',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -36,7 +36,90 @@ class _NavigationPageState extends State<NavigationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: Text(
+          "Kick Bazaar",
+          style: TextStyle(
+            foreground: Paint()
+              ..shader = const LinearGradient(
+                colors: [
+                  Colors.blue,
+                  Colors.green,
+                  Colors.purple,
+                  Colors.red,
+                ], // Replace with your gradient colors
+              ).createShader(const Rect.fromLTWH(
+                  90.0, 100.0, 130.0, 50.0)), // Adjust the Rect size as needed
+            fontWeight: FontWeight.bold,
+            letterSpacing: 2,
+            fontSize: 24,
+          ),
+        ),
+        leadingWidth: 60,
+        centerTitle: true,
+        leading: IconButton(
+            onPressed: () {},
+            icon: ShaderMask(
+              shaderCallback: (Rect bounds) {
+                return const LinearGradient(
+                  colors: [
+                    Colors.blue,
+                    Colors.green,
+                    Colors.purple,
+                    Colors.red,
+                  ], // Replace with your gradient colors
+                ).createShader(bounds);
+              },
+              child: const Icon(
+                Icons.local_mall,
+                color: Colors.white,
+                size: 34,
+              ),
+            )),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(top: 3),
+            child: Stack(
+              alignment: Alignment.topRight,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 3),
+                  child: IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const CheckoutPage()),
+                        );
+                      },
+                      icon: const Icon(
+                        Icons.shopping_cart_checkout_rounded,
+                        color: Colors.black,
+                        size: 30,
+                      )),
+                ),
+                if (basket.isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.only(right: 6),
+                    child: CircleAvatar(
+                      backgroundColor: Colors.red,
+                      radius: 8.2,
+                      child: Text(
+                        basket.length.toString(),
+                        style: const TextStyle(fontSize: 10),
+                      ),
+                    ),
+                  )
+                else
+                  const Center()
+              ],
+            ),
+          ),
+        ],
+      ),
       body: ListView(
+        physics: const BouncingScrollPhysics(),
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -46,56 +129,29 @@ class _NavigationPageState extends State<NavigationPage> {
                   icon: const Icon(
                     Icons.menu,
                     color: Colors.black,
-                    size: 40,
+                    size: 30,
                   )),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 10),
-                    child: IconButton(
-                        onPressed: () {}, icon: const Icon(Icons.search)),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 10),
-                    child: IconButton(
-                        onPressed: () {}, icon: const Icon(Icons.filter_list)),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        IconButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const CheckoutPage()),
-                              );
-                            },
-                            icon: const Icon(Icons.shopping_bag)),
-                        if (basket.isNotEmpty)
-                          CircleAvatar(
-                            backgroundColor: Colors.red,
-                            radius: 7.5,
-                            child: Text(
-                              basket.length.toString(),
-                              style: const TextStyle(fontSize: 10),
-                            ),
-                          )
-                        else
-                          const Center()
-                      ],
-                    ),
-                  ),
+                  IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.search,
+                        size: 28,
+                      )),
+                  IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.filter_list,
+                        size: 28,
+                      )),
                 ],
               ),
             ],
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Text(
               "Jordans",
               style:
@@ -107,7 +163,7 @@ class _NavigationPageState extends State<NavigationPage> {
             child: SneakerList(),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Text(
               "Air Force 1",
               style:
@@ -119,7 +175,7 @@ class _NavigationPageState extends State<NavigationPage> {
             child: AirforceList(),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Text(
               "Dunks",
               style:

@@ -27,94 +27,126 @@ class SneakerPage extends StatefulWidget {
 
 bool addedToBasket = false;
 int selectedIndex = 4;
-List sizes = [7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13];
+List<double> sizes = [
+  7.5,
+  8.0,
+  8.5,
+  9.0,
+  9.5,
+  10.0,
+  10.5,
+  11.0,
+  11.5,
+  12.0,
+  12.5,
+  13.0
+];
 
 class _SneakerPageState extends State<SneakerPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Column(children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(10, 50, 5, 15),
-          child: Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.grey[200]),
-            width: MediaQuery.of(context).size.width,
-            child: Image.asset(widget.imageURL),
+      body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: Column(children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(10, 50, 5, 15),
+            child: Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Colors.grey[200]),
+              width: MediaQuery.of(context).size.width,
+              child: Image.asset(widget.imageURL),
+            ),
           ),
-        ),
-        Align(
-          alignment: Alignment.topCenter,
-          child: Text(
-            "${widget.brand} ${widget.model}",
-            style:
-                GoogleFonts.prompt(fontSize: 28, fontWeight: FontWeight.bold),
-          ),
-        ),
-        const Divider(),
-        Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10),
+          Align(
+            alignment: Alignment.topCenter,
             child: Text(
-              widget.description,
-              textAlign: TextAlign.start,
+              "${widget.brand} ${widget.model}",
               style:
-                  GoogleFonts.prompt(fontSize: 16, fontWeight: FontWeight.w400),
-            )),
-        const Divider(),
-        SizedBox(
-          height: 50,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: sizes.length,
-            itemBuilder: (context, int index) => Padding(
-              padding: const EdgeInsets.only(left: 5),
-              child: GestureDetector(
-                onTap: () {
-                  setState(() {
-                    selectedIndex = index;
-                  });
-                },
-                child: CircleAvatar(
-                  backgroundColor:
-                      index == selectedIndex ? Colors.red : Colors.black,
-                  radius: 25,
-                  child: Text(
-                    sizes[index].toString(),
-                    style: const TextStyle(color: Colors.white),
+                  GoogleFonts.prompt(fontSize: 28, fontWeight: FontWeight.bold),
+            ),
+          ),
+          const Divider(),
+          Padding(
+              padding: const EdgeInsets.only(left: 12, right: 12),
+              child: Text(
+                widget.description,
+                textAlign: TextAlign.start,
+                style: GoogleFonts.prompt(
+                    fontSize: 16, fontWeight: FontWeight.w400),
+              )),
+          const Divider(),
+          const Align(
+            alignment: Alignment.topLeft,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 13),
+              child: Text(
+                "Select your size :",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 70,
+            child: ListView.builder(
+              physics: const BouncingScrollPhysics(),
+              scrollDirection: Axis.horizontal,
+              itemCount: sizes.length,
+              itemBuilder: (context, int index) => Padding(
+                padding: const EdgeInsets.only(left: 5),
+                child: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      selectedIndex = index;
+                    });
+                  },
+                  child: CircleAvatar(
+                    backgroundColor:
+                        index == selectedIndex ? Colors.red : Colors.black,
+                    radius: 25,
+                    child: Text(
+                      sizes[index].toString(),
+                      style: const TextStyle(color: Colors.white),
+                    ),
                   ),
                 ),
               ),
             ),
           ),
-        ),
-        const Divider(),
-        Text(
-          "€${widget.price}",
-          style: GoogleFonts.prompt(fontSize: 24, fontWeight: FontWeight.w500),
-        ),
-        SizedBox(
-          width: 150,
-          child: ElevatedButton(
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
-            onPressed: () {
-              setState(() {
-                addedToBasket = true;
-                addTobag(
-                    brand: widget.brand,
-                    model: widget.model,
-                    imageUrl: widget.imageURL,
-                    size: sizes[selectedIndex],
-                    price: widget.price);
-              });
-            },
-            child: const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [Icon(Icons.shopping_bag), Text("Add to bag")]),
+          const Divider(),
+          Text(
+            "€ ${widget.price}",
+            style:
+                GoogleFonts.prompt(fontSize: 24, fontWeight: FontWeight.w500),
           ),
-        )
-      ]),
+          SizedBox(
+            width: 150,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
+              onPressed: () {
+                setState(() {
+                  addedToBasket = true;
+                  addTobag(
+                      brand: widget.brand,
+                      model: widget.model,
+                      imageUrl: widget.imageURL,
+                      size: sizes[selectedIndex],
+                      price: widget.price);
+                });
+              },
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Icon(Icons.add_shopping_cart_rounded),
+                  Text("Add to Basket"),
+                ],
+              ),
+            ),
+          ),
+        ]),
+      ),
     );
   }
 }
