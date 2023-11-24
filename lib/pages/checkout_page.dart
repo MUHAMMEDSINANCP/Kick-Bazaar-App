@@ -114,7 +114,26 @@ class _CheckoutPageState extends State<CheckoutPage> {
                               Text("Checkout"),
                             ],
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            basket.clear();
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                backgroundColor: Colors.green,
+                                content: Text(
+                                  'Order placed successfully!',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 17),
+                                ),
+                                duration: Duration(
+                                    seconds:
+                                        2), // Adjust the duration as needed
+                              ),
+                            );
+                            Future.delayed(const Duration(seconds: 1), () {
+                              Navigator.pop(context);
+                            });
+                          },
                         ),
                       )
                     : Padding(
@@ -124,7 +143,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           child: Text(
                             "Your basket is empty.",
                             style: TextStyle(
-                                fontSize: 21, fontWeight: FontWeight.bold),
+                                fontSize: 20, fontWeight: FontWeight.bold),
                           ),
                         ),
                       )),

@@ -135,6 +135,34 @@ class _SneakerPageState extends State<SneakerPage> {
                       size: sizes[selectedIndex],
                       price: widget.price);
                 });
+
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    backgroundColor: Colors.green,
+                    content: RichText(
+                      text: TextSpan(
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 17),
+                        children: [
+                          TextSpan(
+                            text:
+                                '${widget.brand} ${widget.model} added to Basket ||',
+                            style: const TextStyle(color: Colors.white),
+                          ),
+                          TextSpan(
+                            text: '   size: ${sizes[selectedIndex]}',
+                            style: const TextStyle(color: Colors.black54),
+                          ),
+                        ],
+                      ),
+                    ),
+                    duration: const Duration(
+                        seconds: 1), // Adjust the duration as needed
+                  ),
+                );
+                Future.delayed(const Duration(seconds: 1), () {
+                  Navigator.pop(context);
+                });
               },
               child: const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
