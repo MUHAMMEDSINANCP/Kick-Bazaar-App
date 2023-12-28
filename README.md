@@ -15,4 +15,4 @@ Provider State Management : Ensures efficient and reliable state management for 
 This repository serves as a demonstration of an MVP sneaker purchasing app, exhibiting clean UI, clean architecture, and efficient state management techniques.
 
 ### Feedback :
-Your feedback is invaluable! Please feel free to share your thoughts and suggestions at cpmuhammedsinan@gmail.com, helping us enhance the Kick Bazaar App.
+Your feedback is extremely valuable! Please don't hesitate to share your thoughts and suggestions at cpmuhammedsinan@gmail.com. Your input will help me improve the Kick Bazaar App.
