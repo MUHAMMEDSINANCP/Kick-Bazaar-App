@@ -1,16 +1,18 @@
-# kick_bazaar_app
+## Kick Bazaar App
+Kick Bazaar App is an MVP tailored for sneaker purchases, boasting a clean UI and constructed with clean architecture techniques. This app employs Provider as its state management solution, ensuring smooth user interactions throughout.
 
-A new Flutter project.
+### Features :
 
-## Getting Started
+Sneaker Purchases : Explore and purchase sneakers seamlessly within the app's interface.
 
-This project is a starting point for a Flutter application.
+Clean UI : Enjoy a user-friendly and visually appealing interface tailored for browsing and buying sneakers.
 
-A few resources to get you started if this is your first Flutter project:
+Clean Architecture : Utilizes clean architecture techniques for robust code organization and scalability.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Provider State Management : Ensures efficient and reliable state management for optimal user experiences.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Purpose :
+This repository serves as a demonstration of an MVP sneaker purchasing app, exhibiting clean UI, clean architecture, and efficient state management techniques.
+
+### Feedback :
+Your feedback is invaluable! Please feel free to share your thoughts and suggestions at cpmuhammedsinan@gmail.com, helping us enhance the Kick Bazaar App.
